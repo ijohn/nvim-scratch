@@ -1,5 +1,9 @@
 vim.g.mapleader = " "
 
+-- Native splits (directions set by splitright and splitbelow)
+vim.keymap.set("n", "<leader>|", "<cmd>vsplit<CR>", { desc = "Split window right" })
+vim.keymap.set("n", "<leader>-", "<cmd>split<CR>", { desc = "Split window below" })
+
 -- replaces selected text WITHOUT losing what you yanked
 vim.keymap.set("x", "p", [["_dP]], { desc = "Paste over selection without losing yanked text" })
 

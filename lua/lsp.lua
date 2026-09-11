@@ -1,5 +1,3 @@
-require("mason").setup()
-
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format Local buffer" })
 vim.keymap.set("n", "df", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
@@ -21,7 +19,9 @@ vim.lsp.config("lua_ls", {
 
 vim.lsp.enable({
     "lua_ls",
-    "marksman",
+    "biome",
     "gopls",
-    "rust_analyzer",
+    "rust-analyzer",
+    "ty",
+    "ruff",
 })

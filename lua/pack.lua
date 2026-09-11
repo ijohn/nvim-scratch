@@ -1,5 +1,5 @@
 vim.pack.add({
-    "https://github.com/bluz71/vim-moonfly-colors",
+    { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
     "https://github.com/nvim-mini/mini.nvim",
     "https://github.com/rafamadriz/friendly-snippets",
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "main" },

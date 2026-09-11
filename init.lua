@@ -7,4 +7,4 @@ require("pack")
 require("treesitter")
 require("lsp")
 
-vim.cmd.colorscheme("moonfly")
+vim.cmd.colorscheme("catppuccin")

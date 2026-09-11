@@ -4,7 +4,6 @@ vim.pack.add({
     "https://github.com/rafamadriz/friendly-snippets",
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "main" },
     "https://github.com/neovim/nvim-lspconfig",
-    "https://github.com/mason-org/mason.nvim",
     "https://github.com/tpope/vim-fugitive",
 })
 

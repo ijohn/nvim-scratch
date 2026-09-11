@@ -1,3 +1,6 @@
+-- only for remote nvim?
+--vim.g.clipboard = "osc52"
+
 vim.g.netrw_banner = 0
 
 vim.opt.nu = true
@@ -33,6 +36,8 @@ vim.opt.scrolloff = 8
 
 vim.opt.colorcolumn = "0"
 vim.opt.signcolumn = "yes"
+vim.o.cmdheight = 0
+vim.opt.termguicolors = true
 
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking (copying) text",

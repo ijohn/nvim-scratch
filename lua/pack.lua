@@ -5,6 +5,7 @@ vim.pack.add({
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "main" },
     "https://github.com/neovim/nvim-lspconfig",
     "https://github.com/tpope/vim-fugitive",
+    "https://github.com/smart-splits-nvim/smart-splits.nvim",
 })
 
 -- mini files ----
@@ -89,3 +90,10 @@ MiniDiff.setup({
 
 vim.keymap.set("n", "<leader>gg", "<cmd>tabnew | Git | only<cr>", { desc = "Fugitive Full Page New Tab" })
 vim.keymap.set("n", "<leader>gd", "<cmd>Gvdiffsplit<CR>", { desc = "Git diff split", })
+
+--- smart-splits ---
+local SmartSplit = require("smart-splits")
+vim.keymap.set('n', '<C-h>', SmartSplit.move_cursor_left)
+vim.keymap.set('n', '<C-j>', SmartSplit.move_cursor_down)
+vim.keymap.set('n', '<C-k>', SmartSplit.move_cursor_up)
+vim.keymap.set('n', '<C-l>', SmartSplit.move_cursor_right)

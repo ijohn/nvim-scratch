@@ -93,6 +93,8 @@ vim.keymap.set("n", "<leader>gd", "<cmd>Gvdiffsplit<CR>", { desc = "Git diff spl
 
 --- smart-splits ---
 local SmartSplit = require("smart-splits")
+SmartSplit.setup({ at_edge = "stop" })
+
 vim.keymap.set('n', '<C-h>', SmartSplit.move_cursor_left)
 vim.keymap.set('n', '<C-j>', SmartSplit.move_cursor_down)
 vim.keymap.set('n', '<C-k>', SmartSplit.move_cursor_up)

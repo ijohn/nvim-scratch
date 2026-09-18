@@ -1,5 +1,16 @@
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format Local buffer" })
+vim.keymap.set("n", "<leader>f", function()
+    local has_biome = #vim.lsp.get_clients({
+        bufnr = 0,
+        name = "biome",
+        method = "textDocument/formatting",
+    }) > 0
+
+    vim.lsp.buf.format({
+        name = has_biome and "biome" or nil,
+        timeout_ms = 3000,
+    })
+end, { desc = "Format Local buffer" })
 vim.keymap.set("n", "df", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
 
 vim.diagnostic.config({ virtual_text = true })

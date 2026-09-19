@@ -60,7 +60,18 @@ MiniPick.setup()
 MiniExtra.setup()
 
 -- keymaps
-vim.keymap.set("n", "<leader><space>", function() MiniPick.builtin.files() end, { desc = "Mini File Picker" })
+vim.keymap.set("n", "<leader><space>", function()
+    MiniPick.builtin.cli({
+        command = { "rg", "--files", "--hidden", "--glob=!.git", "--color=never" },
+    }, {
+        source = {
+            name = "Files (rg)",
+            show = function(buf_id, items, query)
+                MiniPick.default_show(buf_id, items, query, { show_icons = true })
+            end,
+        },
+    })
+end, { desc = "Mini File Picker" })
 vim.keymap.set("n", "<leader>ps", function() MiniPick.builtin.grep({ pattern = vim.fn.expand("<cword>") }) end,
     { desc = "Grep word/Search word" })
 vim.keymap.set("n", "<leader>vh", function() MiniPick.builtin.help() end, { desc = "Mini Help" })

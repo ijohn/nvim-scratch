@@ -118,11 +118,11 @@ local conform = require("conform")
 
 conform.setup({
     formatters_by_ft = {
-        python = { "ruff_format" },
-        javascript = { "biome" },
-        javascriptreact = { "biome" },
-        typescript = { "biome" },
-        typescriptreact = { "biome" },
+        python = { "ruff_organize_imports", "ruff_format" },
+        javascript = { "biome-organize-imports", "biome" },
+        javascriptreact = { "biome-organize-imports", "biome" },
+        typescript = { "biome-organize-imports", "biome" },
+        typescriptreact = { "biome-organize-imports", "biome" },
         json = { "biome" },
         jsonc = { "biome" },
         css = { "biome" },

@@ -1,5 +1,14 @@
--- only for remote nvim?
---vim.g.clipboard = "osc52"
+local is_mac = vim.fn.has("mac") == 1
+
+if is_mac then
+    -- Use the native macOS clipboard automatically.
+    vim.g.clipboard = nil
+    vim.opt.clipboard = "unnamedplus"
+else
+    -- Keep normal edits internal and send yanks through OSC 52 below.
+    vim.g.clipboard = "osc52"
+    vim.opt.clipboard = ""
+end
 
 vim.g.netrw_banner = 0
 
@@ -29,7 +38,6 @@ vim.opt.undofile = true
 
 vim.opt.completeopt = "menuone,noselect,fuzzy,nosort"
 vim.opt.shortmess:append("c")
-vim.opt.clipboard:append("unnamedplus")
 vim.opt.isfname:append("@-@")
 vim.opt.guicursor = ""
 vim.opt.scrolloff = 8
@@ -45,3 +53,23 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.hl.on_yank()
     end,
 })
+
+if not is_mac then
+    vim.api.nvim_create_autocmd("TextYankPost", {
+        group = vim.api.nvim_create_augroup("YankToClipboard", { clear = true }),
+        desc = "Copy yanked text to the terminal clipboard via OSC 52",
+        callback = function()
+            local event = vim.v.event
+            -- Explicit clipboard yanks are already handled by the provider.
+            if event.operator ~= "y" or event.regname == "+" or event.regname == "*" then
+                return
+            end
+
+            local lines = vim.deepcopy(event.regcontents)
+            if event.regtype == "V" then
+                table.insert(lines, "") -- Preserve the trailing newline for whole lines.
+            end
+            require("vim.ui.clipboard.osc52").copy("+")(lines)
+        end,
+    })
+end

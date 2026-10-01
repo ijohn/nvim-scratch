@@ -47,6 +47,12 @@ vim.opt.signcolumn = "yes"
 vim.o.cmdheight = 0
 vim.opt.termguicolors = true
 
+-- Use Tree-sitter folds, keeping files expanded until a fold is toggled.
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking (copying) text",
     callback = function()

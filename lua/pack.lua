@@ -72,8 +72,7 @@ vim.keymap.set("n", "<leader><space>", function()
         },
     })
 end, { desc = "Mini File Picker" })
-vim.keymap.set("n", "<leader>ps", function() MiniPick.builtin.grep({ pattern = vim.fn.expand("<cword>") }) end,
-    { desc = "Grep word/Search word" })
+vim.keymap.set("n", "<leader>ps", function() MiniPick.builtin.grep_live() end, { desc = "Live grep" })
 vim.keymap.set("n", "<leader>vh", function() MiniPick.builtin.help() end, { desc = "Mini Help" })
 vim.keymap.set("n", "<leader>pb", function() MiniPick.builtin.buffers() end, { desc = "Mini Buffers" })
 
